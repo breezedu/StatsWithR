@@ -1,11 +1,11 @@
 ---
 title: "Exploring the BRFSS data"
 output:
-  pdf_document: default
   html_document:
     fig_height: 4
     highlight: pygments
     theme: spacelab
+  pdf_document: default
 ---
 
 ## Setup 
@@ -615,9 +615,20 @@ brfss.q3.m <- model.matrix( X_rfbmi5 ~ ., data = brfss.q3)
 
 corrplot( cor( brfss.q3.m), method = "square", tl.cex = 0.5)
 
-```
+``` 
 
-From the correlation plot, we could see positive correlation between BMI and fruits/veggies consumsion. 
+From the correlation plot, we could see positive correlation between BMI and fruits/veggies consumsion.  
+
+We also want to explorer the mean Computed Body Mass Index in different general health categories. 
+
+```{r distribution of BMI in each general health categories}
+ggplot( brfss.q3, aes( x = genhlth, y = X_bmi5, fill = genhlth)) +
+  geom_boxplot()
+
+```
+The above boxplot shows those individuals claimed to be in Excellent condition have BMI around 2500, as the general conditions go from excellent to very good, good, fair, and poor, the BMI also increase. 
+
+The next step, we would like to investigate whether there are correlations between BMI and diets and drinks. 
 
 ```{r plot relationshipt of bmi and consumptions of fruits and veggies}
 
@@ -643,5 +654,14 @@ For individuals drinking fruit juice, there's a negative correlation with BMI, a
 
 
 **Discussion: ** 
+
+In summary, all plots and tables generated in this document support most of our hypothesis in the three research questions we wanted to ask. 
+
+1. There are positive correlations between education levels and income levels, which would contribute positively to the general health categories. 
+
+2. The correlation between sleeping duration and chronic health conditions are not very significant. 
+
+3. There are significant relationships between diets and computed body mass index. 
+
 
 
