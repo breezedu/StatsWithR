@@ -444,6 +444,21 @@ ggplot(data = sample_means150price, aes(x = x_bar)) +
 </ol>
 ```{r price-sampling-compare}
 # type your code for Question 6 here, and Run Document
+# compare the SE between two samplings
+sample_means50price <- ames %>%
+                          rep_sample_n(size = 50, reps = 15000, replace = TRUE) %>%
+                          summarise(x_bar = mean(price))
+sample_means150price <- ames %>%
+                          rep_sample_n(size = 150, reps = 15000, replace = TRUE) %>%
+                          summarise(x_bar = mean(price))
+
+SE1 <- sd(sample_means150price$x_bar)/sqrt( length(sample_means150price$x_bar) )
+
+SE2 <- sd(sample_means50price$x_bar) / sqrt(length(sample_means50price$x_bar) )
+
+SE1
+
+SE2
 
 ```
 
