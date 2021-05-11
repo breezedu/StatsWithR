@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)http://127.0.0.1:7974/sampling_distributions_Coursera.Rmd -->
+<html class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <script type="application/shiny-singletons"></script>
+  <script type="application/html-dependencies">jquery[3.5.1];shiny-css[1.6.0];shiny-javascript[1.6.0]</script>
+<script src="./Foundations for inference - Sampling distributions_files/jquery.min.js.download"></script>
+<link href="./Foundations for inference - Sampling distributions_files/shiny.min.css" rel="stylesheet">
+<script src="./Foundations for inference - Sampling distributions_files/shiny.min.js.download"></script>  <script src="./Foundations for inference - Sampling distributions_files/rmd_loader.js.download"></script>
+  <link href="./Foundations for inference - Sampling distributions_files/rmd_loader.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="./Foundations for inference - Sampling distributions_files/cerulean.min.css"><script src="./Foundations for inference - Sampling distributions_files/bootstrap.min.js.download"></script><script src="./Foundations for inference - Sampling distributions_files/html5shiv.min.js.download"></script><script src="./Foundations for inference - Sampling distributions_files/respond.min.js.download"></script><style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style><script src="./Foundations for inference - Sampling distributions_files/tabsets.js.download"></script><link rel="stylesheet" type="text/css" href="./Foundations for inference - Sampling distributions_files/rmd_perf.css"><script src="./Foundations for inference - Sampling distributions_files/rmd_perf.js.download"></script><meta name="rstudio_origin" content="127.0.0.1:34076"><script src="./Foundations for inference - Sampling distributions_files/rsiframe.js.download"></script>
+
+
+<meta name="generator" content="pandoc">
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+
+
+
+
+<title>Foundations for inference - Sampling distributions</title>
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="./Foundations for inference - Sampling distributions_files/lab.css" type="text/css">
+
+
+
+<style type="text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+<script type="text/javascript" src="./Foundations for inference - Sampling distributions_files/MathJax.js.download"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?rev=2.6.1') format('woff'), url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?rev=2.6.1') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?rev=2.6.1') format('woff'), url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?rev=2.6.1') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?rev=2.6.1') format('woff'), url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?rev=2.6.1') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?rev=2.6.1') format('woff'), url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?rev=2.6.1') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?rev=2.6.1') format('woff'), url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?rev=2.6.1') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?rev=2.6.1') format('woff'), url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?rev=2.6.1') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?rev=2.6.1') format('woff'), url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?rev=2.6.1') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?rev=2.6.1') format('woff'), url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?rev=2.6.1') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?rev=2.6.1') format('woff'), url('http://127.0.0.1:7974/mathjax-local/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?rev=2.6.1') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body data-new-gr-c-s-check-loaded="14.1010.0" data-gr-ext-installed=""><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+  <div>
+    <div data-display-if="!output.__reactivedoc__" data-ns-prefix="" style="display: none;">
+      <div id="rmd_loader_wrapper">
+        <div id="rmd_loader" style="">
+          <p>Please wait...</p>
+          <img src="./Foundations for inference - Sampling distributions_files/rmd_loader.gif">
+        </div>
+      </div>
+    </div>
+    <div id="__reactivedoc__" class="shiny-html-output shiny-bound-output" aria-live="polite">
+
+
+
+
+
+
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="section-header">
+
+
+
+<h1 class="title toc-ignore">Foundations for inference - Sampling distributions</h1>
+
+</div>
+
+
+<div id="section-instructions">
+<p>Complete all <strong>Exercises</strong>, and submit answers to <strong>Questions</strong> on the Coursera platform.</p>
+</div>
+<div id="section-getting-started" class="section level2">
+<h2>Getting Started</h2>
+<div id="section-load-packages" class="section level3">
+<h3>Load packages</h3>
+<p>In this lab we will explore the data using the <code>dplyr</code> package and visualize it using the <code>ggplot2</code> package for data visualization. The data can be found in the companion package for this course, <code>statsr</code>.</p>
+<p>Let's load the packages.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(statsr)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(shiny)
+<span class="kw">library</span>(ggplot2)</code></pre></div>
+</div>
+<div id="section-the-data" class="section level3">
+<h3>The data</h3>
+<p>We consider real estate data from the city of Ames, Iowa. The details of every real estate transaction in Ames is recorded by the City Assessor's office. Our particular focus for this lab will be all residential home sales in Ames between 2006 and 2010. This collection represents our population of interest. In this lab we would like to learn about these home sales by taking smaller samples from the full population. Let's load the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(ames)</code></pre></div>
+<p>We see that there are quite a few variables in the data set, enough to do a very in-depth analysis. For this lab, we'll restrict our attention to just two of the variables: the above ground living area of the house in square feet (<code>area</code>) and the sale price (<code>price</code>).</p>
+<p>We can explore the distribution of areas of homes in the population of home sales visually and with summary statistics. Let's first create a visualization, a histogram:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> ames, <span class="kw">aes</span>(<span class="dt">x =</span> area)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">250</span>)</code></pre></div>
+<p><img src="./Foundations for inference - Sampling distributions_files/area-hist-1.png" width="672"></p>
+<p>Let's also obtain some summary statistics. Note that we can do this using the <code>summarise</code> function. We can calculate as many statistics as we want using this function, and just string along the results. Some of the functions below should be self explanatory (like <code>mean</code>, <code>median</code>, <code>sd</code>, <code>IQR</code>, <code>min</code>, and <code>max</code>). A new function here is the <code>quantile</code> function which we can use to calculate values corresponding to specific percentile cutoffs in the distribution. For example <code>quantile(x, 0.25)</code> will yield the cutoff value for the 25th percentile (Q1) in the distribution of x. Finding these values are useful for describing the distribution, as we can use them for descriptions like <em>"the middle 50% of the homes have areas between such and such square feet"</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ames <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mu =</span> <span class="kw">mean</span>(area), <span class="dt">pop_med =</span> <span class="kw">median</span>(area), 
+            <span class="dt">sigma =</span> <span class="kw">sd</span>(area), <span class="dt">pop_iqr =</span> <span class="kw">IQR</span>(area),
+            <span class="dt">pop_min =</span> <span class="kw">min</span>(area), <span class="dt">pop_max =</span> <span class="kw">max</span>(area),
+            <span class="dt">pop_q1 =</span> <span class="kw">quantile</span>(area, <span class="fl">0.25</span>),  <span class="co"># first quartile, 25th percentile</span>
+            <span class="dt">pop_q3 =</span> <span class="kw">quantile</span>(area, <span class="fl">0.75</span>))  <span class="co"># third quartile, 75th percentile</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 8
+##      mu pop_med sigma pop_iqr pop_min pop_max pop_q1 pop_q3
+##   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1 1500.    1442  506.    617.     334    5642   1126  1743.</code></pre>
+<ol style="list-style-type: decimal">
+<li>Which of the following is <strong>false</strong>?
+<ol>
+<li>
+The distribution of areas of houses in Ames is unimodal and right-skewed.
+</li>
+<li>
+50% of houses in Ames are smaller than 1,499.69 square feet.
+</li>
+<li>
+The middle 50% of the houses range between approximately 1,126 square feet and 1,742.7 square feet.
+</li>
+<li>
+The IQR is approximately 616.7 square feet.
+</li>
+<li>
+The smallest house is 334 square feet and the largest is 5,642 square feet.
+</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="section-the-unknown-sampling-distribution" class="section level2">
+<h2>The unknown sampling distribution</h2>
+<p>In this lab we have access to the entire population, but this is rarely the case in real life. Gathering information on an entire population is often extremely costly or impossible. Because of this, we often take a sample of the population and use that to understand the properties of the population.</p>
+<p>If we were interested in estimating the mean living area in Ames based on a sample, we can use the following command to survey the population.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samp1 &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">50</span>)</code></pre></div>
+<p>This command collects a simple random sample of <code>size</code> 50 from the <code>ames</code> dataset, which is assigned to <code>samp1</code>. This is like going into the City Assessor's database and pulling up the files on 50 random home sales. Working with these 50 files would be considerably simpler than working with all 2930 home sales.</p>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: Describe the distribution of this sample? How does it compare to the distribution of the population? <strong>Hint:</strong> <code>sample_n</code> function takes a random sample of observations (i.e. rows) from the dataset, you can still refer to the variables in the dataset with the same names. Code you used in the previous exercise will also be helpful for visualizing and summarizing the sample, however be careful to not label values <code>mu</code> and <code>sigma</code> anymore since these are sample statistics, not population parameters. You can customize the labels of any of the statistics to indicate that these come from the sample.</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for the Exercise here, and Run Document</span></code></pre></div>
+<p>If we're interested in estimating the average living area in homes in Ames using the sample, our best single guess is the sample mean.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">samp1 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(area))</code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   x_bar
+##   &lt;dbl&gt;
+## 1 1425.</code></pre>
+<p>Depending on which 50 homes you selected, your estimate could be a bit above or a bit below the true population mean of 1,499.69 square feet. In general, though, the sample mean turns out to be a pretty good estimate of the average living area, and we were able to get it by sampling less than 3% of the population.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose we took two more samples, one of size 100 and one of size 1000. Which would you think would provide a more accurate estimate of the population mean?
+<ol>
+<li>
+Sample size of 50.
+</li>
+<li>
+Sample size of 100.
+</li>
+<li>
+Sample size of 1000.
+</li>
+</ol></li>
+</ol>
+<p>Let's take one more sample of size 50, and view the mean area in this sample:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ames <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">50</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(area))</code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   x_bar
+##   &lt;dbl&gt;
+## 1 1400.</code></pre>
+<p>Not surprisingly, every time we take another random sample, we get a different sample mean. It's useful to get a sense of just how much variability we should expect when estimating the population mean this way. The distribution of sample means, called the <em>sampling distribution</em>, can help us understand this variability. In this lab, because we have access to the population, we can build up the sampling distribution for the sample mean by repeating the above steps many times. Here we will generate 15,000 samples and compute the sample mean of each. Note that we are sampling with replacement, <code>replace = TRUE</code> since sampling distributions are constructed with sampling with replacement.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_means50 &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span>
+<span class="st">                    </span><span class="kw">rep_sample_n</span>(<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">reps =</span> <span class="dv">15000</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(area))
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> sample_means50, <span class="kw">aes</span>(<span class="dt">x =</span> x_bar)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">20</span>)</code></pre></div>
+<p><img src="./Foundations for inference - Sampling distributions_files/loop-1.png" width="672"></p>
+<p>Here we use R to take 15,000 samples of size 50 from the population, calculate the mean of each sample, and store each result in a vector called <code>sample_means50</code>. Next, we review how this set of code works.</p>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: How many elements are there in <code>sample_means50</code>? Describe the sampling distribution, and be sure to specifically note its center. Make sure to include a plot of the distribution in your answer.</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for the Exercise here, and Run Document</span>
+<span class="kw">dim</span>(sample_means50)</code></pre></div>
+<pre><code>## [1] 15000     2</code></pre>
+</div>
+<div id="section-interlude-sampling-distributions" class="section level2">
+<h2>Interlude: Sampling distributions</h2>
+<p>The idea behind the <code>rep_sample_n</code> function is <em>repetition</em>. Earlier we took a single sample of size <code>n</code> (50) from the population of all houses in Ames. With this new function we are able to repeat this sampling procedure <code>rep</code> times in order to build a distribution of a series of sample statistics, which is called the <strong>sampling distribution</strong>.</p>
+<p>Note that in practice one rarely gets to build sampling distributions, because we rarely have access to data from the entire population.</p>
+<p>Without the <code>rep_sample_n</code> function, this would be painful. We would have to manually run the following code 15,000 times</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ames <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">50</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(area))</code></pre></div>
+<p>as well as store the resulting sample means each time in a separate vector.</p>
+<p>Note that for each of the 15,000 times we computed a mean, we did so from a <strong>different</strong> sample!</p>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: To make sure you understand how sampling distributions are built, and exactly what the <code>sample_n</code> and <code>do</code> function do, try modifying the code to create a sampling distribution of <strong>25 sample means</strong> from <strong>samples of size 10</strong>, and put them in a data frame named <code>sample_means_small</code>. Print the output. How many observations are there in this object called <code>sample_means_small</code>? What does each observation represent?</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for the Exercise here, and Run Document</span>
+sample_means_small &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span>
+<span class="st">                        </span><span class="kw">rep_sample_n</span>(<span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">reps =</span> <span class="dv">25</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">                        </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(area))
+<span class="kw">dim</span>(sample_means_small)</code></pre></div>
+<pre><code>## [1] 25  2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_means_small, <span class="kw">aes</span>(<span class="dt">x =</span> x_bar)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">20</span>)</code></pre></div>
+<p><img src="./Foundations for inference - Sampling distributions_files/practice-sampling-dist-1.png" width="672"></p>
+<ol start="3" style="list-style-type: decimal">
+<li>How many elements are there in this object called <code>sample_means_small</code>?
+<ol>
+<li>
+0
+</li>
+<li>
+3
+</li>
+<li>
+25
+</li>
+<li>
+100
+</li>
+<li>
+5,000
+</li>
+</ol></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for Question 3 here, and Run Document</span>
+<span class="kw">dim</span>(sample_means_small)</code></pre></div>
+<pre><code>## [1] 25  2</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Which of the following is <strong>true</strong> about the elements in the sampling distributions you created?
+<ol>
+<li>
+Each element represents a mean square footage from a simple random sample of 10 houses.
+</li>
+<li>
+Each element represents the square footage of a house.
+</li>
+<li>
+Each element represents the true population mean of square footage of houses.
+</li>
+</ol></li>
+</ol>
+</div>
+<div id="section-sample-size-and-the-sampling-distribution" class="section level2">
+<h2>Sample size and the sampling distribution</h2>
+<p>Mechanics aside, let's return to the reason we used the <code>rep_sample_n</code> function: to compute a sampling distribution, specifically, this one.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> sample_means50, <span class="kw">aes</span>(<span class="dt">x =</span> x_bar)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">20</span>)</code></pre></div>
+<p><img src="./Foundations for inference - Sampling distributions_files/hist-1.png" width="672"></p>
+<p>The sampling distribution that we computed tells us much about estimating the average living area in homes in Ames. Because the sample mean is an unbiased estimator, the sampling distribution is centered at the true average living area of the population, and the spread of the distribution indicates how much variability is induced by sampling only 50 home sales.</p>
+<p>In the remainder of this section we will work on getting a sense of the effect that sample size has on our sampling distribution.</p>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: Use the app below to create sampling distributions of means of <code>area</code>s from samples of size 10, 50, and 100. Use 5,000 simulations. What does each observation in the sampling distribution represent? How does the mean, standard error, and shape of the sampling distribution change as the sample size increases? How (if at all) do these values change if you increase the number of simulations?</p>
+</div>
+<iframe width="100%" height="500" class="shiny-frame" src="./Foundations for inference - Sampling distributions_files/saved_resource.html"></iframe>
+<ol start="5" style="list-style-type: decimal">
+<li>It makes intuitive sense that as the sample size increases, the center of the sampling distribution becomes a more reliable estimate for the true population mean. Also as the sample size increases, the variability of the sampling distribution ________.
+<ol>
+<li>
+decreases
+</li>
+<li>
+increases
+</li>
+<li>
+stays the same
+</li>
+</ol></li>
+</ol>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: Take a random sample of size 50 from <code>price</code>. Using this sample, what is your best point estimate of the population mean?</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for this Exercise here, and Run Document</span>
+
+ames <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">50</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(price))</code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##     x_bar
+##     &lt;dbl&gt;
+## 1 187043.</code></pre>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: Since you have access to the population, simulate the sampling distribution for <span class="math inline"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mover&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;&amp;#x00AF;&lt;/mo&gt;&lt;/mover&gt;&lt;/mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-1" role="math" style="width: 2.682em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.205em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.313em, 1002.21em, 2.622em, -999.997em); top: -2.14em; left: 0.003em;"><span class="mrow" id="MathJax-Span-2"><span class="msubsup" id="MathJax-Span-3"><span style="display: inline-block; position: relative; width: 2.205em; height: 0px;"><span style="position: absolute; clip: rect(3.158em, 1000.54em, 4.17em, -999.997em); top: -3.985em; left: 0.003em;"><span class="texatom" id="MathJax-Span-4"><span class="mrow" id="MathJax-Span-5"><span class="munderover" id="MathJax-Span-6"><span style="display: inline-block; position: relative; width: 0.598em; height: 0px;"><span style="position: absolute; clip: rect(3.396em, 1000.54em, 4.17em, -999.997em); top: -3.985em; left: 0.003em;"><span class="mi" id="MathJax-Span-7" style="font-family: MathJax_Math-italic;">x</span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.217em, 1000.42em, 3.634em, -999.997em); top: -4.045em; left: 0.063em;"><span class="mo" id="MathJax-Span-8" style="font-family: MathJax_Main;">¯</span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; top: -3.807em; left: 0.598em;"><span class="texatom" id="MathJax-Span-9"><span class="mrow" id="MathJax-Span-10"><span class="mi" id="MathJax-Span-11" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-12" style="font-size: 70.7%; font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-13" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-14" style="font-size: 70.7%; font-family: MathJax_Math-italic;">c</span><span class="mi" id="MathJax-Span-15" style="font-size: 70.7%; font-family: MathJax_Math-italic;">e</span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.146em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.425em; border-left: 0px solid; width: 0px; height: 1.289em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mrow class="MJX-TeXAtom-ORD"><mover><mi>x</mi><mo stretchy="false">¯</mo></mover></mrow><mrow class="MJX-TeXAtom-ORD"><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi></mrow></msub></math></span></span><script type="math/tex" id="MathJax-Element-1">\bar{x}_{price}</script></span> by taking 5000 samples from the population of size 50 and computing 5000 sample means. Store these means in a vector called <code>sample_means50</code>. Plot the data, then describe the shape of this sampling distribution. Based on this sampling distribution, what would you guess the mean home price of the population to be?</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for this Exercise here, and Run Document</span>
+
+sample_means50price &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">rep_sample_n</span>(<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">reps =</span> <span class="dv">15000</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(price))
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> sample_means50price, <span class="kw">aes</span>(<span class="dt">x =</span> x_bar)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>)</code></pre></div>
+<p><img src="./Foundations for inference - Sampling distributions_files/price-sampling-1.png" width="672"></p>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: Change your sample size from 50 to 150, then compute the sampling distribution using the same method as above, and store these means in a new vector called <code>sample_means150</code>. Describe the shape of this sampling distribution, and compare it to the sampling distribution for a sample size of 50. Based on this sampling distribution, what would you guess to be the mean sale price of homes in Ames?</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for this Exercise here, and Run Document</span>
+
+sample_means150price &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">rep_sample_n</span>(<span class="dt">size =</span> <span class="dv">150</span>, <span class="dt">reps =</span> <span class="dv">15000</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(price))
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> sample_means150price, <span class="kw">aes</span>(<span class="dt">x =</span> x_bar)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>)</code></pre></div>
+<p><img src="./Foundations for inference - Sampling distributions_files/price-sampling-more-1.png" width="672"></p>
+<hr>
+<p>So far, we have only focused on estimating the mean living area in homes in Ames. Now you'll try to estimate the mean home price.</p>
+<p>Note that while you might be able to answer some of these questions using the app you are expected to write the required code and produce the necessary plots and summary statistics. You are welcomed to use the app for exploration.</p>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: Take a sample of size 15 from the population and calculate the mean <code>price</code> of the homes in this sample. Using this sample, what is your best point estimate of the population mean of prices of homes?</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for this Exercise here, and Run Document</span>
+ames <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">15</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(price))</code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##     x_bar
+##     &lt;dbl&gt;
+## 1 190286.</code></pre>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: Since you have access to the population, simulate the sampling distribution for <span class="math inline"><span class="MathJax_Preview" style="color: inherit;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;msub&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mover&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;&amp;#x00AF;&lt;/mo&gt;&lt;/mover&gt;&lt;/mrow&gt;&lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;/mrow&gt;&lt;/msub&gt;&lt;/math&gt;" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-16" role="math" style="width: 2.682em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.205em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.313em, 1002.21em, 2.622em, -999.997em); top: -2.14em; left: 0.003em;"><span class="mrow" id="MathJax-Span-17"><span class="msubsup" id="MathJax-Span-18"><span style="display: inline-block; position: relative; width: 2.205em; height: 0px;"><span style="position: absolute; clip: rect(3.158em, 1000.54em, 4.17em, -999.997em); top: -3.985em; left: 0.003em;"><span class="texatom" id="MathJax-Span-19"><span class="mrow" id="MathJax-Span-20"><span class="munderover" id="MathJax-Span-21"><span style="display: inline-block; position: relative; width: 0.598em; height: 0px;"><span style="position: absolute; clip: rect(3.396em, 1000.54em, 4.17em, -999.997em); top: -3.985em; left: 0.003em;"><span class="mi" id="MathJax-Span-22" style="font-family: MathJax_Math-italic;">x</span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; clip: rect(3.217em, 1000.42em, 3.634em, -999.997em); top: -4.045em; left: 0.063em;"><span class="mo" id="MathJax-Span-23" style="font-family: MathJax_Main;">¯</span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span><span style="position: absolute; top: -3.807em; left: 0.598em;"><span class="texatom" id="MathJax-Span-24"><span class="mrow" id="MathJax-Span-25"><span class="mi" id="MathJax-Span-26" style="font-size: 70.7%; font-family: MathJax_Math-italic;">p</span><span class="mi" id="MathJax-Span-27" style="font-size: 70.7%; font-family: MathJax_Math-italic;">r</span><span class="mi" id="MathJax-Span-28" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span class="mi" id="MathJax-Span-29" style="font-size: 70.7%; font-family: MathJax_Math-italic;">c</span><span class="mi" id="MathJax-Span-30" style="font-size: 70.7%; font-family: MathJax_Math-italic;">e</span></span></span><span style="display: inline-block; width: 0px; height: 3.991em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.146em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.425em; border-left: 0px solid; width: 0px; height: 1.289em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mrow class="MJX-TeXAtom-ORD"><mover><mi>x</mi><mo stretchy="false">¯</mo></mover></mrow><mrow class="MJX-TeXAtom-ORD"><mi>p</mi><mi>r</mi><mi>i</mi><mi>c</mi><mi>e</mi></mrow></msub></math></span></span><script type="math/tex" id="MathJax-Element-2">\bar{x}_{price}</script></span> by taking 2000 samples from the population of size 15 and computing 2000 sample means. Store these means in a vector called <code>sample_means15</code>. Plot the data, then describe the shape of this sampling distribution. Based on this sampling distribution, what would you guess the mean home price of the population to be? Finally, calculate and report the population mean.</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for this Exercise here, and Run Document </span>
+sample_means15price &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">rep_sample_n</span>(<span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">reps =</span> <span class="dv">2000</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(price))
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> sample_means15price, <span class="kw">aes</span>(<span class="dt">x =</span> x_bar)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>)</code></pre></div>
+<p><img src="./Foundations for inference - Sampling distributions_files/price-sampling-small-1.png" width="672"></p>
+<div id="section-exercise">
+<p><strong>Exercise</strong>: Change your sample size from 15 to 150, then compute the sampling distribution using the same method as above, and store these means in a new vector called <code>sample_means150</code>. Describe the shape of this sampling distribution, and compare it to the sampling distribution for a sample size of 15. Based on this sampling distribution, what would you guess to be the mean sale price of homes in Ames?</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for this Exercise here, and Run Document </span>
+sample_means150price &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">rep_sample_n</span>(<span class="dt">size =</span> <span class="dv">150</span>, <span class="dt">reps =</span> <span class="dv">2000</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(price))
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> sample_means150price, <span class="kw">aes</span>(<span class="dt">x =</span> x_bar)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>)</code></pre></div>
+<p><img src="./Foundations for inference - Sampling distributions_files/price-sampling-big-1.png" width="672"></p>
+<ol start="6" style="list-style-type: decimal">
+<li>Which of the following is false?
+<ol>
+<li>
+The variability of the sampling distribution with the smaller sample size (<code>sample_means50</code>) is smaller than the variability of the sampling distribution with the larger sample size (<code>sample_means150</code>).
+</li>
+<li>
+The means for the two sampling distribtuions are roughly similar.
+</li>
+<li>
+Both sampling distributions are symmetric.
+</li>
+</ol></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># type your code for Question 6 here, and Run Document</span>
+<span class="co"># compare the SE between two samplings</span>
+sample_means50price &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">rep_sample_n</span>(<span class="dt">size =</span> <span class="dv">50</span>, <span class="dt">reps =</span> <span class="dv">15000</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(price))
+sample_means150price &lt;-<span class="st"> </span>ames <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">rep_sample_n</span>(<span class="dt">size =</span> <span class="dv">150</span>, <span class="dt">reps =</span> <span class="dv">15000</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">                          </span><span class="kw">summarise</span>(<span class="dt">x_bar =</span> <span class="kw">mean</span>(price))
+
+SE1 &lt;-<span class="st"> </span><span class="kw">sd</span>(sample_means150price<span class="op">$</span>x_bar)<span class="op">/</span><span class="kw">sqrt</span>( <span class="kw">length</span>(sample_means150price<span class="op">$</span>x_bar) )
+
+SE2 &lt;-<span class="st"> </span><span class="kw">sd</span>(sample_means50price<span class="op">$</span>x_bar) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(sample_means50price<span class="op">$</span>x_bar) )
+
+SE1</code></pre></div>
+<pre><code>## [1] 53.56236</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SE2</code></pre></div>
+<pre><code>## [1] 92.34672</code></pre>
+<div id="section-license">
+<p>This is a derivative of an <a href="https://www.openintro.org/stat/labs.php">OpenIntro</a> lab, and is released under a <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">Attribution-NonCommercial-ShareAlike 3.0 United States</a> license.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("section-TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+</div>
+  </div>
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Main, sans-serif;"></div></div></body></html>
